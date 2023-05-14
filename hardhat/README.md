@@ -1,5 +1,9 @@
 ### SupplyChainManagement Smart Contract Documentation
 
+## Deployed Dapp Link : [Supply-Chain]('supply-chain-solution-dacs.vercel.app')
+
+**ItemManager seploia address** ```0x18648e6138868249973b80061b1da6A931938ECa```
+
 The SupplyChainManagement smart contract is used for managing the supply chain of items. It contains the following features:
 
 #### Imports
@@ -31,5 +35,3 @@ This contract imports another contract called Item.sol
 - createItem(): This function creates a new item for the supply chain and initializes its state. It also stores it in the items mapping.
 - triggerPayment(): This function triggers the payment for an item and changes its state from created to paid.
 - triggerDelivery(): This function triggers the delivery of an item and changes its state from paid to delivered.
-
-**ItemManager seploia address** ```0x18648e6138868249973b80061b1da6A931938ECa```
