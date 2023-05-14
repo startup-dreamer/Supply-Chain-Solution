@@ -89,6 +89,7 @@ const product_state = (state) => {
 
 
   return (<div className="container">
+  <div className=".main-container">
     <nav className="navbar">
       <h1 className="navbar-heading">Supply Chain Solution</h1>
       {connected ? (
@@ -97,57 +98,59 @@ const product_state = (state) => {
         <button className="connect-wallet-btn" onClick={connectWallet}>Connect Wallet</button>
       )}
     </nav>
-     <div>
-  <label>Item Identifier: </label>
-  <input type="text" id="identifier" />
-  <label>Cost: </label>
-  <input type="number" id="cost" />
-  <button onClick={() => createItem(document.getElementById("identifier").value, document.getElementById("cost").value)}>Create Item</button>
-</div>
 
-<div>
-  <label>Item Index: </label>
-  <input type="number" id="index" />
-  <button onClick={() => triggerPayment(items.length - document.getElementById("index").value)}>Trigger Payment</button>
-</div>
-<div>
-  <label>Item Index: </label>
-  <input type="number" id="index" />
-  <button onClick={() => triggerDelivery(document.getElementById("index").value)}>Trigger Delivery</button>
-</div>
+    <div>
+      <label>Item Identifier: </label>
+      <input type="text" id="identifier" />
+      <label>Cost: </label>
+      <input type="number" id="cost" />
+      <button onClick={() => createItem(document.getElementById("identifier").value, document.getElementById("cost").value)}>Create Item</button>
+    </div>
 
-      <div>
+    <div>
+      <label>Item Index: </label>
+      <input type="number" id="index" />
+      <button onClick={() => triggerPayment(items.length - document.getElementById("index").value)}>Trigger Payment</button>
+    </div>
+
+    <div>
+      <label>Item Index: </label>
+      <input type="number" id="index" />
+      <button onClick={() => triggerDelivery(document.getElementById("index").value)}>Trigger Delivery</button>
+    </div>
+
+    <div>
       {items.length > 0 ? (
-  <table>
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th>Item Contract Address</th>
-      <th>Product Name</th>
-      <th>Price</th>
-      <th>State of Product</th>
-    </tr>
-  </thead>
-  <tbody>
-    {items.slice().reverse().map((item, index) => (
-      <tr key={index}>
-        <td>{index}</td>
-        <td>{item._item}</td>
-        <td>{item._identifier}</td>
-        <td>{bignumber_to_eth(item._itemPrice._hex)} Eth</td>
-        <td>{product_state(item._state)}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+        <table>
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Item Contract Address</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>State of Product</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.slice().reverse().map((item, index) => (
+              <tr key={index}>
+                <td>{index}</td>
+                <td>{item._item}</td>
+                <td>{item._identifier}</td>
+                <td>{bignumber_to_eth(item._itemPrice._hex)} Eth</td>
+                <td>{product_state(item._state)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No items found</p>
+      )}
+    </div>
+  </div>
+  </div>
+);
 
-) : (
-  <p>No items found</p>
-)}
-  </div>
-  </div>
-    
-  );
 }
 
 export default App;
