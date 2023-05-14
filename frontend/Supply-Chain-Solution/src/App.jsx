@@ -15,6 +15,10 @@ function App() {
   
   const connectWallet = async () => {
     try {
+      if (!window.ethereum){
+        alert("Please install Metamask to use this application.");
+        return;
+      }
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
       await window.ethereum.request({
@@ -25,9 +29,9 @@ function App() {
         ItemManagerContract.abi,
         provider.getSigner(),
       );
-      setProvider(provider); // update provider and contract instance
+      setProvider(provider);
       setContract(instance);
-      setConnected(true); // update connected to true
+      setConnected(true);
     } catch (error) {
       console.log(error);
     }
